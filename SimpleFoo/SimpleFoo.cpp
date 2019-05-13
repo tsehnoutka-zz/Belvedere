@@ -1,3 +1,21 @@
+//  WORKS .......
+#include <iostream>
+#include <string>
+#include <thread>
+void threadCallback(int x, std::string str)
+{
+	std::cout << "Passed Number = " << x << std::endl;
+	std::cout << "Passed String = " << str << std::endl;
+}
+int main()
+{
+	int x = 10;
+	std::string str = "Sample String";
+	std::thread threadObj(threadCallback, x, str);
+	threadObj.join();
+	return 0;
+}
+/*  DOESNT WORK
 #include <iostream>
 #include <string>
 #include <thread>
@@ -18,8 +36,8 @@ int main()
 	std::string str = "Sample String";
 	for (int x = 0; x < 4; x++)
 	{
-		std::thread threadObj(threadCallback, x, str);
-		threads.push_back(threadObj);
+		std::thread threadObj(threadCallback, 10, str);
+		threads.push_back(threadObj);	
 	}
 	for (auto& t : threads) t.join();
 	return 0;
